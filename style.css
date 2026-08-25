@@ -1,0 +1,27 @@
+h3 {
+    color: firebrick;
+}
+
+.container {
+    color: green;
+    border-style: solid;
+    border-color: brown;
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container-bg {
+    background-color: antiquewhite;
+}
+
+.my-font {
+    font-family: "Charm", cursive;
+}
+
+#container-id {
+    color: green;
+    margin-top: 25px;
+}
