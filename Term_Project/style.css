@@ -27,7 +27,7 @@ body {
 }
 
 .navbar {
-    height: 72px;
+    height: 52px;
     background: var(--white);
     border-bottom: 1px solid var(--line);
     display: flex;
@@ -74,24 +74,25 @@ body {
 .page-shell {
     max-width: 1240px;
     margin: 0 auto;
-    padding: 28px 20px 36px
+    padding: 12px 20px 20px
 }
 
 .hero-card {
-    min-height: 250px;
-    border-radius: 24px;
-    padding: 34px 42px;
+    min-height: 125px;
+    border-radius: 16px;
+    padding: 16px 20px;
+    gap: 16px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(115deg, #fff1dd, #fffaf4 62%, #ffe5d4);
-    box-shadow: 0 10px 28px #b1744720;
+    background: var(--cream);
+    border: 1px solid var(--line);
     overflow: hidden;
     position: relative
 }
 
 .hero-card:after {
-    content: '🥢';
+    content: none;
     position: absolute;
     right: 41%;
     bottom: -25px;
@@ -108,7 +109,7 @@ body {
 }
 
 .hero-card h1 {
-    font: 600 39px/1.2 Kanit, sans-serif;
+    font: 600 22px/1.3 Kanit, sans-serif;
     margin: 0;
     letter-spacing: -.5px
 }
@@ -120,16 +121,24 @@ body {
 
 .hero-copy {
     color: var(--muted);
-    font-size: 14px;
-    margin: 11px 0 0;
+    font-size: 12px;
+    margin: 4px 0 0;
     max-width: 430px
 }
 
 .random-zone {
     z-index: 1;
-    width: 330px;
-    text-align: center
+    width: auto;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: minmax(120px, 1fr) auto;
+    align-items: center;
+    gap: 4px 16px;
+    text-align: left
 }
+
+.random-actions { display: flex; gap: 8px; }
+.random-shop-result { grid-column: 1 / -1; }
 
 .result-label {
     font-size: 12px;
@@ -141,7 +150,7 @@ body {
 }
 
 .random-shop-result {
-    margin: 8px 0 0;
+    margin: 4px 0 0;
     font-size: 12px;
     color: var(--ink);
     overflow-wrap: anywhere;
@@ -156,8 +165,8 @@ body {
 
 .nearest-badge {
     display: inline-block;
-    margin-top: 5px;
-    padding: 3px 8px;
+    margin-top: 3px;
+    padding: 1px 7px;
     border: 1px solid #a4ceb0;
     border-radius: 12px;
     background: #edf8ef;
@@ -190,10 +199,10 @@ body {
 }
 
 .food-result {
-    font: 600 27px Kanit, sans-serif;
+    font: 600 20px/1.4 Kanit, sans-serif;
     color: var(--orange-dark);
-    height: 47px;
-    padding-top: 4px
+    min-height: 28px;
+    overflow-wrap: anywhere
 }
 
 .food-result.pop {
@@ -232,24 +241,24 @@ select {
     border-radius: 12px;
     background: var(--orange);
     color: white;
-    padding: 12px 21px;
-    font-size: 14px;
+    padding: 9px 14px;
+    min-height: 44px;
+    font-size: 13px;
     font-weight: 600;
-    box-shadow: 0 6px 15px #f26b3840;
     text-decoration: none
 }
 
 .primary-button:hover {
     background: var(--orange-dark);
-    transform: translateY(-1px)
 }
 
 .toolbar {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin: 22px 0 14px;
-    padding: 12px 15px;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 8px 0;
+    padding: 8px 12px;
     background: var(--white);
     border: 1px solid var(--line);
     border-radius: 15px
@@ -268,16 +277,23 @@ select {
     background: #fffaf5;
     color: var(--ink);
     padding: 8px 28px 8px 10px;
-    border-radius: 9px
+    border-radius: 12px;
+    min-height: 44px
 }
 
 .secondary-button {
     border: 1px solid var(--line);
-    border-radius: 10px;
+    border-radius: 12px;
     background: var(--white);
     color: var(--ink);
     padding: 9px 14px;
     font-size: 13px
+}
+
+.secondary-button { min-height: 44px; }
+button:focus-visible, select:focus-visible, .link-button:focus-visible, .shop-card:focus-visible {
+    outline: 3px solid #a84016;
+    outline-offset: 2px;
 }
 
 .secondary-button:hover {
@@ -308,7 +324,7 @@ select {
 .workspace {
     display: grid;
     grid-template-columns: minmax(0, 1.65fr) minmax(320px, .9fr);
-    gap: 18px
+    gap: 10px
 }
 
 .map-panel {
@@ -345,13 +361,13 @@ select {
 
 .map-hint {
     position: absolute;
-    bottom: 13px;
-    left: 13px;
+    top: 0;
+    left: 0;
+    position: relative;
     z-index: 500;
     background: #ffffffed;
     padding: 7px 11px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px #0002;
     color: var(--muted);
     font-size: 11px
 }
@@ -360,7 +376,7 @@ select {
     background: var(--white);
     border: 1px solid var(--line);
     border-radius: 18px;
-    padding: 20px;
+    padding: 12px;
     min-height: 540px
 }
 
@@ -372,7 +388,7 @@ select {
 
 .results-heading h2,
 .route-panel h2 {
-    font: 600 24px Kanit;
+    font: 600 18px/1.4 Kanit;
     margin: 0
 }
 
@@ -393,7 +409,8 @@ select {
     font-size: 11px;
     color: var(--muted);
     line-height: 1.5;
-    padding-bottom: 12px;
+    margin: 6px 0;
+    padding-bottom: 6px;
     border-bottom: 1px solid var(--line)
 }
 
@@ -403,11 +420,11 @@ select {
 }
 
 .shop-card {
-    padding: 13px 10px;
+    padding: 8px 4px;
     border-bottom: 1px solid #f0e9e2;
     cursor: pointer;
     display: flex;
-    gap: 11px;
+    gap: 8px;
     align-items: flex-start
 }
 
@@ -428,7 +445,7 @@ select {
 }
 
 .shop-card h3 {
-    font: 600 15px Kanit;
+    font: 500 14px/1.4 Kanit;
     margin: 0 0 2px
 }
 
@@ -455,24 +472,25 @@ select {
 .route-panel {
     display: flex;
     align-items: center;
-    gap: 22px;
+    gap: 12px;
+    flex-wrap: wrap;
     background: #fff4e9;
     border: 1px solid #ffd8c1;
     border-radius: 16px;
-    margin-top: 18px;
-    padding: 16px 20px
+    margin-top: 10px;
+    padding: 10px 12px
 }
 
 .route-stats {
     display: flex;
-    gap: 22px;
+    gap: 14px;
     font-size: 13px;
     color: var(--muted)
 }
 
 .route-stats strong {
     color: var(--orange-dark);
-    font: 600 22px Kanit
+    font: 600 18px Kanit
 }
 
 .route-actions {
@@ -485,7 +503,7 @@ select {
     text-align: center;
     color: #a69b91;
     font-size: 11px;
-    margin: 23px 0 0
+    margin: 12px 0 0
 }
 
 .leaflet-popup-content-wrapper {
@@ -512,7 +530,8 @@ select {
     border: 0;
     background: var(--orange);
     color: #fff;
-    border-radius: 7px;
+    border-radius: 12px;
+    min-height: 44px;
     padding: 7px 10px;
     font-size: 11px
 }
@@ -553,27 +572,33 @@ select {
     }
 
     .page-shell {
-        padding: 16px 12px
+        padding: 8px
     }
 
     .hero-card {
         display: block;
-        padding: 23px 22px;
+        padding: 12px;
         min-height: auto
     }
 
     .hero-card h1 {
-        font-size: 30px
+        font-size: 20px
     }
 
     .hero-copy {
-        font-size: 13px
+        font-size: 12px
     }
 
     .random-zone {
         width: auto;
-        margin-top: 20px
+        margin-top: 8px;
+        grid-template-columns: 1fr;
+        gap: 6px
     }
+
+    .menu-result { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .random-actions > * { flex: 1; padding: 8px 10px; }
+    .random-shop-result { margin: 0; }
 
     .hero-card:after {
         right: -10px;
@@ -583,7 +608,8 @@ select {
 
     .toolbar {
         flex-wrap: wrap;
-        gap: 9px
+        gap: 6px;
+        padding: 8px
     }
 
     .location-status {
@@ -596,10 +622,12 @@ select {
         flex-direction: column
     }
 
-    .map-panel,
+    .map-panel {
+        min-height: 0;
+    }
+
     #map {
-        min-height: 390px;
-        height: 390px
+        height: clamp(440px, 62svh, 620px)
     }
 
     .results-panel {
@@ -611,15 +639,20 @@ select {
     }
 
     .route-panel {
-        display: block
+        display: flex;
+        gap: 8px
     }
 
+    .route-panel > div:first-child { width: 100%; }
+    .route-panel h2 { font-size: 16px; }
+
     .route-stats {
-        margin: 8px 0
+        margin: 0
     }
 
     .route-actions {
-        margin: 0
+        margin: 0;
+        flex-wrap: wrap
     }
 
     .route-actions>* {
