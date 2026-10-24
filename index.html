@@ -1,92 +1,32 @@
-<!doctype html>
-<html lang="th">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>กินอะไรดี? – Food Random Web Map</title>
-  <meta name="description" content="ให้เราช่วยสุ่มอาหารและค้นหาร้านใกล้มหาวิทยาลัยเชียงใหม่บนแผนที่">
-  <link rel="preconnect" href="https://unpkg.com">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <script type="module" crossorigin src="./assets/index-C_vMyQdU.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Ci7moYUd.css">
 </head>
 
 <body>
-  <header class="navbar">
-    <div class="brand"><span class="brand-mark">🍜</span><span>กินอะไรดี?</span><small>Food Random Web Map</small></div>
-    <div class="status-pill"><span class="status-dot"></span> พื้นที่รอบ มช.</div>
-  </header>
+    <div class="container mt-5">
 
-  <main class="page-shell">
-    <section class="hero-card">
-      <div>
-        <p class="eyebrow">FIND YOUR NEXT BITE</p>
-        <h1>กดสุ่ม<br><em>แล้วลุย</em> ร้านอร่อยเลย！</h1>
-        <p class="hero-copy">สุ่มประเภทอาหาร แล้วค้นหาร้านที่อยู่ใกล้คุณ</p>
-      </div>
-      <div class="random-zone">
-        <span class="result-label">เมนูที่สุ่มได้</span>
-        <div id="food-result" class="food-result" aria-live="polite">กดปุ่มเพื่อเริ่มสุ่ม</div>
-        <button id="random-food" class="primary-button" type="button"><span>✦</span> สุ่มอาหาร</button>
-        <div class="random-shop-zone">
-          <button id="random-shop" class="secondary-button" type="button" aria-describedby="random-shop-result" disabled>🎲 สุ่มร้านให้ฉัน</button>
-          <p id="random-shop-result" class="random-shop-result" role="status">กำลังโหลดข้อมูลร้าน...</p>
+        <div class="card">
+
+            <div class="card-header">
+                <label for="">เลือก basemap</label>
+                <select id="select" class="form-select w-auto">
+                    <option value="osm">osm</option>
+                    <option value="esri">แผนที่ดาวเทียม</option>
+                </select>
+            </div>
+
+
+            <div class="card-body map" id="map"></div>
         </div>
-      </div>
-    </section>
-
-    <section class="toolbar" aria-label="ตัวกรองร้านอาหาร">
-      <div class="toolbar-group">
-        <label for="radius-select">ค้นหาในรัศมี</label>
-        <select id="radius-select">
-          <option value="1">1 กิโลเมตร</option>
-          <option value="3">3 กิโลเมตร</option>
-          <option value="5">5 กิโลเมตร</option>
-          <option value="all" selected>ทุกระยะ</option>
-        </select>
-      </div>
-      <button id="locate-me" class="secondary-button" type="button">◎ ตำแหน่งของฉัน</button>
-      <div id="location-status" class="location-status">กำลังโหลดตำแหน่งร้านอาหาร...</div>
-    </section>
-
-    <div id="notice" class="notice" role="status" hidden></div>
-
-    <section class="workspace">
-      <div class="map-panel">
-        <div id="map" aria-label="แผนที่ร้านอาหาร"></div>
-        <div class="map-hint">คลิกบนแผนที่เพื่อเลือกจุดเริ่มต้นเอง</div>
-      </div>
-      <aside class="results-panel">
-        <div class="results-heading">
-          <div>
-            <p class="eyebrow">NEARBY PLACES</p>
-            <h2>ร้านที่พบ <span id="result-count">0</span></h2>
-          </div>
-          <span class="demo-tag">ข้อมูลร้านอาหาร</span>
-        </div>
-        <p class="distance-note">ระยะทางคำนวณแบบเส้นตรงจากจุดเริ่มต้น ไม่ใช่ระยะทางตามถนน</p>
-        <div id="shop-list" class="shop-list">
-          <div class="empty-state">กำลังโหลดข้อมูลร้าน...</div>
-        </div>
-      </aside>
-    </section>
-
-    <section id="route-panel" class="route-panel" hidden>
-      <div>
-        <p class="eyebrow">ROUTE SUMMARY</p>
-        <h2>เส้นทางไป <span id="route-shop-name">ร้านอาหาร</span></h2>
-      </div>
-      <div class="route-stats"><span><strong id="route-distance">–</strong> กม.</span><span><strong
-            id="route-duration">–</strong> นาที</span></div>
-      <div class="route-actions"><button id="clear-route" class="secondary-button" type="button">ล้างเส้นทาง</button><a
-          id="google-directions" class="primary-button link-button" href="#" target="_blank" rel="noopener">เปิด Google
-          Maps</a></div>
-    </section>
-    <p class="footer-note">ข้อมูลร้านอาหารจาก shops.json • แผนที่ © OpenStreetMap contributors</p>
-  </main>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-  <script src="app.js"></script>
-</body>
+        <span id="lat"></span>, <span id="lng"></span>
+    </div>
+</body>
 
 </html>
